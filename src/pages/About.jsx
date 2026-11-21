@@ -47,7 +47,7 @@ export default function About({ setActivePage, onOpenQuote }) {
       <InnerHeroBanner
         heading="Precision Engineering. Trusted Accuracy."
         description="Discover our commitment to manufacturing reliable, high-quality precision measuring instruments and delivering dimensional accuracy to industries."
-        bgImage="/images/metrology_lab.jpg"
+        bgImage="./images/metrology_lab.jpg"
         breadcrumbs={[
           { label: 'Home', pageId: 'home' },
           { label: 'About Us' }
@@ -100,7 +100,7 @@ export default function About({ setActivePage, onOpenQuote }) {
                 boxShadow: 'var(--shadow-sm)'
               }}>
                 <img
-                  src="/images/metrology_lab.jpg"
+                  src="./images/metrology_lab.jpg"
                   alt="Jupiter Gauges - Dimensional Metrology Lab and Standards Room"
                   style={{ width: '100%', height: 'auto', display: 'block' }}
                 />

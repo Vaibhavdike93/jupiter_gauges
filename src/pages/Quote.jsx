@@ -115,7 +115,7 @@ Sales Desk: ${COMPANY_INFO.contact.emailSales} | ${COMPANY_INFO.contact.phonePri
       <InnerHeroBanner
         heading="Get the Right Gauging Solution for Your Requirements"
         description="Share your product specifications and measurement requirements. Our team will help you with suitable precision gauging solutions."
-        bgImage="/images/master_setting_rings.jpg"
+        bgImage="./images/master_setting_rings.jpg"
         breadcrumbs={[
           { label: 'Home', pageId: 'home' },
           { label: 'Enquire Now' }

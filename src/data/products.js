@@ -15,56 +15,56 @@ export const PRODUCTS = [
     name: 'Plain Plug Gauges',
     category: 'plug-gauges',
     shortDesc: 'Double-ended and single-ended cylindrical limit gauges for high-precision bore inspection and hole sizing.',
-    image: '/images/plain_plug_gauges.jpg'
+    image: './images/plain_plug_gauges.jpg'
   },
   {
     id: 'plain-ring-gauge',
     name: 'Plain Ring Gauges',
     category: 'ring-gauges',
     shortDesc: 'Precision cylindrical ring gauges for inspecting external shaft diameters and calibrating comparative instruments.',
-    image: '/images/plain_ring_gauges.jpg'
+    image: './images/plain_ring_gauges.jpg'
   },
   {
     id: 'thread-plug-ring-gauge',
     name: 'Thread Gauges',
     category: 'thread-gauges',
     shortDesc: 'Comprehensive GO and NO-GO screw thread gauges for Metric, UNC, UNF, BSP, and NPT thread profiles.',
-    image: '/images/thread_gauges.jpg'
+    image: './images/thread_gauges.jpg'
   },
   {
     id: 'snap-gauge',
     name: 'Snap Gauges',
     category: 'snap-gauges',
     shortDesc: 'Rapid GO / NO-GO caliper limit gauges with carbide measuring anvils for external diameter check on machine.',
-    image: '/images/snap_gauges.jpg'
+    image: './images/snap_gauges.jpg'
   },
   {
     id: 'pin-gauge-set',
     name: 'Measuring Pins & Pin Gauge Sets',
     category: 'pin-gauges',
     shortDesc: 'Micro-finished cylindrical measuring pins in individual sizes and graduated box sets for precision hole inspection.',
-    image: '/images/pin_gauges.jpg'
+    image: './images/pin_gauges.jpg'
   },
   {
     id: 'slip-gauge-set',
     name: 'Slip Gauges (Gauge Blocks)',
     category: 'slip-gauges',
     shortDesc: 'Master length standards with mirror optical wringing finish for toolroom calibration and CMM reference.',
-    image: '/images/slip_gauges.jpg'
+    image: './images/slip_gauges.jpg'
   },
   {
     id: 'od-master-setting-disc',
     name: 'OD Masters & Setting Discs',
     category: 'masters',
     shortDesc: 'Cylindrical outer diameter setting masters for calibrating comparative external measuring instruments.',
-    image: '/images/od_master.jpg'
+    image: './images/od_master.jpg'
   },
   {
     id: 'master-setting-ring',
     name: 'Master Setting Rings',
     category: 'masters',
     shortDesc: 'Master internal bore reference rings for zeroing pneumatic bore gauges, air plugs, and three-point micrometers.',
-    image: '/images/master_setting_rings.jpg'
+    image: './images/master_setting_rings.jpg'
   }
 ];
 

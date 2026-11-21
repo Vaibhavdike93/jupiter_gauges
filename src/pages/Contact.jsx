@@ -56,7 +56,7 @@ export default function Contact({ preselectedProduct = null, setActivePage }) {
       <InnerHeroBanner
         heading="Let's Discuss Your Precision Measurement Requirements"
         description="Connect with our team for product enquiries, technical assistance, custom gauging requirements and business collaborations."
-        bgImage="/images/od_master.jpg"
+        bgImage="./images/od_master.jpg"
         breadcrumbs={[
           { label: 'Home', pageId: 'home' },
           { label: 'Contact Us' }

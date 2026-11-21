@@ -156,7 +156,7 @@ export default function Home({ setActivePage, onOpenQuote }) {
                 backgroundColor: 'var(--color-white)'
               }}>
                 <img
-                  src="/images/metrology_lab.jpg"
+                  src="./images/metrology_lab.jpg"
                   alt="Jupiter Gauges - Dimensional Metrology Lab and Standards Room"
                   style={{ width: '100%', height: 'auto', display: 'block' }}
                 />

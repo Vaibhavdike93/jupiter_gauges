@@ -35,7 +35,7 @@ export default function Products({ onOpenQuote, initialCategory = 'all', setActi
       <InnerHeroBanner
         heading="High-Precision Gauges & Measuring Instruments"
         description="Explore our comprehensive range of precision-engineered gauges and measuring solutions designed to meet demanding industrial quality standards."
-        bgImage="/images/thread_gauges.jpg"
+        bgImage="./images/thread_gauges.jpg"
         breadcrumbs={[
           { label: 'Home', pageId: 'home' },
           { label: 'Products' }

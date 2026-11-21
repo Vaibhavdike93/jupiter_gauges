@@ -13,7 +13,7 @@ const SLIDES = [
     category: 'Precision Measurement',
     headline: 'Precision Gauges for Quality-Driven Manufacturing',
     description: 'Explore precision gauging solutions for dimensional inspection and manufacturing quality control.',
-    image: '/images/hero_gauges.jpg',
+    image: './images/hero_gauges.jpg',
     imageAlt: 'Jupiter Gauges - Precision plug gauges, ring gauges, and industrial measuring instruments',
   },
   {
@@ -21,7 +21,7 @@ const SLIDES = [
     category: 'Industrial Gauging Solutions',
     headline: 'Reliable Gauging Solutions for Industry',
     description: 'Discover measurement and inspection products suited to industrial quality requirements.',
-    image: '/images/manufacturing_facility.jpg',
+    image: './images/manufacturing_facility.jpg',
     imageAlt: 'Jupiter Gauges - Industrial manufacturing facility and precision machining setup',
   },
   {
@@ -29,7 +29,7 @@ const SLIDES = [
     category: 'Product Range',
     headline: 'Find the Right Gauge for Your Application',
     description: 'Explore our range of precision gauges and identify suitable solutions for your inspection needs.',
-    image: '/images/master_setting_rings.jpg',
+    image: './images/master_setting_rings.jpg',
     imageAlt: 'Jupiter Gauges - Comprehensive collection of master setting rings and industrial gauges',
   },
   {
@@ -37,7 +37,7 @@ const SLIDES = [
     category: 'Engineering and Quality',
     headline: 'Supporting Consistent Manufacturing Quality',
     description: 'Explore gauging solutions for dimensional verification across relevant engineering applications.',
-    image: '/images/workbench_inspection.jpg',
+    image: './images/workbench_inspection.jpg',
     imageAlt: 'Jupiter Gauges - Gauge dimensional verification on granite metrology inspection surface',
   },
   {
@@ -45,7 +45,7 @@ const SLIDES = [
     category: 'Customer Enquiries',
     headline: 'Looking for a Suitable Gauging Solution?',
     description: 'Contact our team to discuss your product requirements and quotation enquiries.',
-    image: '/images/od_master.jpg',
+    image: './images/od_master.jpg',
     imageAlt: 'Jupiter Gauges - Custom precision OD masters and industrial gauging solutions',
   },
 ];

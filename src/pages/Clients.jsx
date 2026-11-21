@@ -27,7 +27,7 @@ export default function Clients({ setActivePage }) {
       <InnerHeroBanner
         heading="Building Trust Through Precision & Quality"
         description="Partnering with manufacturing industries to deliver dependable gauging solutions, consistent quality and long-term business relationships."
-        bgImage="/images/workbench_inspection.jpg"
+        bgImage="./images/workbench_inspection.jpg"
         breadcrumbs={[
           { label: 'Home', pageId: 'home' },
           { label: 'Clients' }
