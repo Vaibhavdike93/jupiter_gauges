@@ -2,25 +2,25 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import QuoteModal from './components/QuoteModal';
-import ProductDetailModal from './components/ProductDetailModal';
+import FloatingContactButtons from './components/FloatingContactButtons';
 
 import Home from './pages/Home';
 import About from './pages/About';
 import Products from './pages/Products';
 import Clients from './pages/Clients';
 import Contact from './pages/Contact';
+import Quote from './pages/Quote';
 
 export default function App() {
   const [activePage, setActivePage] = useState('home');
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [quoteProduct, setQuoteProduct] = useState('');
-  const [selectedProductForDetail, setSelectedProductForDetail] = useState(null);
 
   // Sync with browser URL hash
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (['home', 'about', 'products', 'clients', 'contact'].includes(hash)) {
+      if (['home', 'about', 'products', 'clients', 'contact', 'quote'].includes(hash)) {
         setActivePage(hash);
       }
     };
@@ -44,10 +44,6 @@ export default function App() {
     setIsQuoteModalOpen(true);
   };
 
-  const handleSelectProduct = (product) => {
-    setSelectedProductForDetail(product);
-  };
-
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Navigation Bar */}
@@ -63,7 +59,6 @@ export default function App() {
           <Home 
             setActivePage={navigateToPage} 
             onOpenQuote={handleOpenQuote} 
-            onSelectProduct={handleSelectProduct}
           />
         )}
 
@@ -76,8 +71,8 @@ export default function App() {
 
         {activePage === 'products' && (
           <Products 
+            setActivePage={navigateToPage}
             onOpenQuote={handleOpenQuote} 
-            onSelectProduct={handleSelectProduct}
           />
         )}
 
@@ -90,8 +85,16 @@ export default function App() {
 
         {activePage === 'contact' && (
           <Contact 
+            setActivePage={navigateToPage}
             onOpenQuote={handleOpenQuote} 
             preselectedProduct={quoteProduct}
+          />
+        )}
+
+        {activePage === 'quote' && (
+          <Quote 
+            setActivePage={navigateToPage}
+            onOpenQuote={handleOpenQuote} 
           />
         )}
       </main>
@@ -109,13 +112,8 @@ export default function App() {
         preselectedProduct={quoteProduct}
       />
 
-      {/* Universal Technical Product Specs Modal */}
-      <ProductDetailModal 
-        product={selectedProductForDetail}
-        isOpen={!!selectedProductForDetail}
-        onClose={() => setSelectedProductForDetail(null)}
-        onOpenQuote={handleOpenQuote}
-      />
+      {/* Floating Call & WhatsApp Buttons */}
+      <FloatingContactButtons />
     </div>
   );
 }

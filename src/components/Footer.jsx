@@ -1,23 +1,15 @@
 import React from 'react';
-import { 
-  ArrowUp, 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Clock, 
-  ShieldCheck, 
-  Award,
-  ChevronRight,
-  ExternalLink
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  ChevronRight
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/company';
 import { PRODUCT_CATEGORIES } from '../data/products';
 
-export default function Footer({ setActivePage, onOpenQuote }) {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
+export default function Footer({ setActivePage }) {
   const handleNav = (pageId, categoryId = null) => {
     setActivePage(pageId);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -28,254 +20,180 @@ export default function Footer({ setActivePage, onOpenQuote }) {
 
   return (
     <footer style={{
-      backgroundColor: '#1E2124',
-      color: '#B0B8C0',
-      borderTop: '3px solid var(--color-primary-yellow)',
-      position: 'relative'
+      backgroundColor: 'var(--color-charcoal)',
+      color: '#A5ACB4',
+      borderTop: '3px solid var(--color-primary-yellow)'
     }}>
-      {/* Upper Pre-Footer Callout Bar */}
-      <div style={{
-        backgroundColor: '#151719',
-        padding: '32px 0',
-        borderBottom: '1px solid #2B2F34'
-      }}>
-        <div className="container" style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '20px'
-        }}>
-          <div>
-            <div style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: '1.25rem',
-              fontWeight: '700',
-              color: '#FFFFFF'
-            }}>
-              Need a Custom Limit Gauge or Special Thread Standard?
-            </div>
-            <div style={{ fontSize: '0.875rem', color: '#8E96A0' }}>
-              Send us your manufacturing 2D drawings, tolerances (H7, 6H, etc.), or nominal dimensions for a prompt technical proposal.
-            </div>
-          </div>
-          <div style={{ display: 'flex', gap: '12px' }}>
-            <button 
-              onClick={() => onOpenQuote()} 
-              className="btn btn-primary"
-            >
-              Request a Quotation
-            </button>
-            <button 
-              onClick={() => handleNav('contact')} 
-              className="btn btn-outline-white"
-            >
-              Contact Engineering Team
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer Content */}
-      <div className="container" style={{ padding: '64px 24px 48px 24px' }}>
+      <div className="container" style={{ padding: '54px 24px 36px 24px' }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: '40px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gap: '36px'
         }}>
-          {/* Column 1: Brand & Identity */}
+          {/* Column 1: Company Logo & Identity */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
               <div style={{
-                width: '36px',
-                height: '36px',
+                width: '32px',
+                height: '32px',
                 backgroundColor: 'var(--color-primary-yellow)',
-                borderRadius: '6px',
+                borderRadius: 'var(--radius-xs)',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                flexShrink: 0
               }}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#25282B" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#292D30" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="12" r="9" strokeDasharray="3 2" />
-                  <circle cx="12" cy="12" r="4" fill="#25282B" />
+                  <circle cx="12" cy="12" r="4" fill="#292D30" />
                   <line x1="12" y1="2" x2="12" y2="5" />
                   <line x1="12" y1="19" x2="12" y2="22" />
                 </svg>
               </div>
               <div style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: '1.3rem',
-                fontWeight: '800',
-                color: '#FFFFFF',
-                letterSpacing: '-0.02em'
+                fontSize: '1.2rem',
+                fontWeight: '700',
+                color: 'var(--color-white)',
+                letterSpacing: '-0.01em'
               }}>
                 JUPITER <span style={{ color: 'var(--color-primary-yellow)' }}>GAUGES</span>
               </div>
             </div>
-            <p style={{ fontSize: '0.875rem', lineHeight: 1.6, marginBottom: '20px', color: '#9DA6B0' }}>
-              Dedicated to manufacturing sub-micron precision plain plug gauges, ring gauges, thread inspection masters, and metrology standards for global aerospace, automotive, and engineering tooling sectors.
+            <p style={{ fontSize: '0.8125rem', lineHeight: 1.6, marginBottom: '16px', color: '#9DA4AD' }}>
+              Manufacturer of precision limit plug gauges, plain ring gauges, thread inspection masters, and dimensional standards conforming to IS, ISO, and DIN specifications.
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span className="badge badge-dark">
-                <ShieldCheck size={13} style={{ marginRight: '4px' }} /> ISO / DIN / IS Compliant
-              </span>
-            </div>
           </div>
 
           {/* Column 2: Quick Links */}
           <div>
             <h4 style={{
-              fontSize: '1rem',
-              color: '#FFFFFF',
-              marginBottom: '20px',
-              position: 'relative',
-              paddingBottom: '10px'
+              fontSize: '0.9rem',
+              color: 'var(--color-white)',
+              marginBottom: '16px',
+              fontWeight: '600',
+              textTransform: 'uppercase',
+              letterSpacing: '0.04em'
             }}>
               Quick Navigation
-              <span style={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                width: '30px',
-                height: '2px',
-                backgroundColor: 'var(--color-primary-yellow)'
-              }} />
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.875rem' }}>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.8125rem' }}>
               <li>
-                <button 
+                <button
                   onClick={() => handleNav('home')}
-                  style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#B0B8C0', transition: 'color var(--transition-fast)' }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#A5ACB4', transition: 'color var(--transition-fast)' }}
                   onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary-yellow)'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#B0B8C0'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#A5ACB4'}
                 >
-                  <ChevronRight size={14} color="var(--color-primary-yellow)" /> Home Overview
+                  <ChevronRight size={13} color="var(--color-primary-yellow)" /> Home
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => handleNav('about')}
-                  style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#B0B8C0', transition: 'color var(--transition-fast)' }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#A5ACB4', transition: 'color var(--transition-fast)' }}
                   onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary-yellow)'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#B0B8C0'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#A5ACB4'}
                 >
-                  <ChevronRight size={14} color="var(--color-primary-yellow)" /> About Us & Metrology Lab
+                  <ChevronRight size={13} color="var(--color-primary-yellow)" /> About Us
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => handleNav('products')}
-                  style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#B0B8C0', transition: 'color var(--transition-fast)' }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#A5ACB4', transition: 'color var(--transition-fast)' }}
                   onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary-yellow)'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#B0B8C0'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#A5ACB4'}
                 >
-                  <ChevronRight size={14} color="var(--color-primary-yellow)" /> Precision Product Catalogue
+                  <ChevronRight size={13} color="var(--color-primary-yellow)" /> Products
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => handleNav('clients')}
-                  style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#B0B8C0', transition: 'color var(--transition-fast)' }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#A5ACB4', transition: 'color var(--transition-fast)' }}
                   onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary-yellow)'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#B0B8C0'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#A5ACB4'}
                 >
-                  <ChevronRight size={14} color="var(--color-primary-yellow)" /> Industries & Client Partners
+                  <ChevronRight size={13} color="var(--color-primary-yellow)" />Clients
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => handleNav('contact')}
-                  style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#B0B8C0', transition: 'color var(--transition-fast)' }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#A5ACB4', transition: 'color var(--transition-fast)' }}
                   onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary-yellow)'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#B0B8C0'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#A5ACB4'}
                 >
-                  <ChevronRight size={14} color="var(--color-primary-yellow)" /> Contact & RFQ Center
+                  <ChevronRight size={13} color="var(--color-primary-yellow)" /> Contact Us
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Product Range */}
+          {/* Column 3: Product Categories */}
           <div>
             <h4 style={{
-              fontSize: '1rem',
-              color: '#FFFFFF',
-              marginBottom: '20px',
-              position: 'relative',
-              paddingBottom: '10px'
+              fontSize: '0.9rem',
+              color: 'var(--color-white)',
+              marginBottom: '16px',
+              fontWeight: '600',
+              textTransform: 'uppercase',
+              letterSpacing: '0.04em'
             }}>
               Product Range
-              <span style={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                width: '30px',
-                height: '2px',
-                backgroundColor: 'var(--color-primary-yellow)'
-              }} />
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.875rem' }}>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.8125rem' }}>
               {PRODUCT_CATEGORIES.slice(1).map((cat) => (
                 <li key={cat.id}>
-                  <button 
+                  <button
                     onClick={() => handleNav('products', cat.id)}
-                    style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#B0B8C0', textAlign: 'left' }}
+                    style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#A5ACB4', textAlign: 'left', transition: 'color var(--transition-fast)' }}
                     onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary-yellow)'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#B0B8C0'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#A5ACB4'}
                   >
-                    <ChevronRight size={14} color="var(--color-primary-yellow)" /> {cat.name}
+                    <ChevronRight size={13} color="var(--color-primary-yellow)" /> {cat.name}
                   </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 4: Contact & Facility Placeholders */}
+          {/* Column 4: Contact Information */}
           <div>
             <h4 style={{
-              fontSize: '1rem',
-              color: '#FFFFFF',
-              marginBottom: '20px',
-              position: 'relative',
-              paddingBottom: '10px'
+              fontSize: '0.9rem',
+              color: 'var(--color-white)',
+              marginBottom: '16px',
+              fontWeight: '600',
+              textTransform: 'uppercase',
+              letterSpacing: '0.04em'
             }}>
-              Works & Metrology Center
-              <span style={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                width: '30px',
-                height: '2px',
-                backgroundColor: 'var(--color-primary-yellow)'
-              }} />
+              Works & Inquiries
             </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '0.875rem' }}>
-              <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <MapPin size={18} color="var(--color-primary-yellow)" style={{ flexShrink: 0, marginTop: '2px' }} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.8125rem' }}>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                <MapPin size={15} color="var(--color-primary-yellow)" style={{ flexShrink: 0, marginTop: '2px' }} />
                 <div>
-                  <div style={{ color: '#E0E5EA' }}>{COMPANY_INFO.contact.addressLine1}</div>
+                  <div style={{ color: '#DCE1E6' }}>{COMPANY_INFO.contact.addressLine1}</div>
                   <div style={{ color: '#8E96A0' }}>{COMPANY_INFO.contact.addressLine2}</div>
                   <div style={{ color: '#8E96A0' }}>{COMPANY_INFO.contact.addressState}</div>
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                <Phone size={18} color="var(--color-primary-yellow)" style={{ flexShrink: 0 }} />
-                <div>
-                  <div style={{ color: '#E0E5EA' }}>{COMPANY_INFO.contact.phonePrimary}</div>
-                </div>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <Phone size={15} color="var(--color-primary-yellow)" style={{ flexShrink: 0 }} />
+                <div style={{ color: '#DCE1E6' }}>{COMPANY_INFO.contact.phonePrimary}</div>
               </div>
 
-              <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                <Mail size={18} color="var(--color-primary-yellow)" style={{ flexShrink: 0 }} />
-                <div>
-                  <div style={{ color: '#E0E5EA' }}>{COMPANY_INFO.contact.emailSales}</div>
-                </div>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <Mail size={15} color="var(--color-primary-yellow)" style={{ flexShrink: 0 }} />
+                <div style={{ color: '#DCE1E6' }}>{COMPANY_INFO.contact.emailSales}</div>
               </div>
 
-              <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                <Clock size={18} color="var(--color-primary-yellow)" style={{ flexShrink: 0 }} />
-                <div style={{ color: '#8E96A0', fontSize: '0.8rem' }}>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <Clock size={15} color="var(--color-primary-yellow)" style={{ flexShrink: 0 }} />
+                <div style={{ color: '#8E96A0', fontSize: '0.75rem' }}>
                   {COMPANY_INFO.contact.workingHours}
                 </div>
               </div>
@@ -283,80 +201,38 @@ export default function Footer({ setActivePage, onOpenQuote }) {
           </div>
         </div>
 
-        {/* Editable Placeholder Note for User */}
-        <div style={{
-          marginTop: '48px',
-          padding: '16px 20px',
-          backgroundColor: '#272B30',
-          borderRadius: 'var(--radius-md)',
-          border: '1px dashed #4A5057',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: '12px'
-        }}>
-          <div style={{ fontSize: '0.8125rem', color: '#D0D6DD' }}>
-            <strong style={{ color: 'var(--color-primary-yellow)' }}>Jupiter Gauges Identity Note:</strong> Contact details, address, and client names are currently configured with clearly demarcated editable placeholders.
-          </div>
-          <button 
-            onClick={() => handleNav('contact')} 
-            className="btn btn-sm btn-secondary" 
-            style={{ color: '#FFF', borderColor: '#666', fontSize: '0.75rem' }}
-          >
-            Update Contact Details
-          </button>
-        </div>
-
         {/* Lower Copyright & Legal Strip */}
         <div style={{
           marginTop: '36px',
-          paddingTop: '24px',
-          borderTop: '1px solid #2B2F34',
+          paddingTop: '20px',
+          borderTop: '1px solid #363B40',
           display: 'flex',
           flexWrap: 'wrap',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: '16px',
-          fontSize: '0.8125rem',
+          gap: '12px',
+          fontSize: '0.78rem',
           color: '#7D8690'
         }}>
           <div>
-            © {new Date().getFullYear()} Jupiter Gauges. All rights reserved. Precision Measuring Instruments & Industrial Gauges.
+            © 2026 Jupiter Gauges. All rights reserved.
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-            <button 
-              onClick={() => handleNav('about')}
-              style={{ color: '#7D8690', transition: 'color var(--transition-fast)' }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#FFF'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#7D8690'}
-            >
-              Quality Policy
-            </button>
-            <button 
-              onClick={() => handleNav('products')}
-              style={{ color: '#7D8690', transition: 'color var(--transition-fast)' }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#FFF'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#7D8690'}
-            >
-              Metrology Standards
-            </button>
-            <button
-              onClick={scrollToTop}
+          <div>
+            Developed by{' '}
+            <a
+              href="https://aurastackitsolution.in/"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
                 color: 'var(--color-primary-yellow)',
-                fontWeight: '600',
-                padding: '4px 8px',
-                borderRadius: '4px',
-                backgroundColor: 'rgba(244, 196, 48, 0.1)'
+                textDecoration: 'none',
+                fontWeight: '600'
               }}
-              aria-label="Scroll to top of page"
+              onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
+              onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
             >
-              Top <ArrowUp size={14} />
-            </button>
+              Aurastack IT Solution
+            </a>
           </div>
         </div>
       </div>

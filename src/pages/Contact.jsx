@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Clock, 
-  Send, 
-  CheckCircle2, 
-  MessageSquare, 
-  Upload, 
-  FileText,
-  Download,
-  AlertCircle
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Send,
+  CheckCircle2
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/company';
 import { PRODUCTS } from '../data/products';
+import InnerHeroBanner from '../components/InnerHeroBanner';
 
-export default function Contact({ onOpenQuote, preselectedProduct = null }) {
+export default function Contact({ preselectedProduct = null, setActivePage }) {
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -30,14 +26,17 @@ export default function Contact({ onOpenQuote, preselectedProduct = null }) {
 
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
-  const [referenceId, setReferenceId] = useState('');
 
   const validate = () => {
     const errs = {};
     if (!formData.name.trim()) errs.name = 'Full name is required';
     if (!formData.company.trim()) errs.company = 'Company name is required';
     if (!formData.email.trim() || !formData.email.includes('@')) errs.email = 'Valid corporate email is required';
-    if (!formData.phone.trim() || formData.phone.length < 8) errs.phone = 'Valid phone number is required';
+    if (!formData.phone.trim()) {
+      errs.phone = 'Phone number is required';
+    } else if (formData.phone.length !== 10) {
+      errs.phone = 'Please enter a valid 10-digit number';
+    }
     return errs;
   };
 
@@ -48,330 +47,222 @@ export default function Contact({ onOpenQuote, preselectedProduct = null }) {
       setErrors(valErrors);
       return;
     }
-
-    const ref = `JG-ENQ-${Math.floor(100000 + Math.random() * 900000)}`;
-    setReferenceId(ref);
     setSubmitted(true);
-  };
-
-  const handleDownloadEnquiry = () => {
-    const slipText = `=====================================================
-JUPITER GAUGES - OFFICIAL INQUIRY TRANSMITTAL
-Reference: ${referenceId}
-Date: ${new Date().toLocaleDateString()}
-=====================================================
-
-CONTACT INFORMATION:
-- Name: ${formData.name}
-- Company: ${formData.company}
-- Email: ${formData.email}
-- Phone: ${formData.phone}
-
-INQUIRY DETAILS:
-- Gauge Category: ${formData.productInterest}
-- Quantity: ${formData.quantity} Units
-- Target Size / Tolerance: ${formData.specs || 'As per standard specification'}
-- File Attachment: ${formData.fileName || 'None'}
-- Message: ${formData.message || 'Standard Request'}
-
-SUPPLIER / RECIPIENT:
-Jupiter Gauges - Precision Measuring Instruments
-Email: ${COMPANY_INFO.contact.emailSales}
-Phone: ${COMPANY_INFO.contact.phonePrimary}
-Facility: ${COMPANY_INFO.contact.addressLine1}, ${COMPANY_INFO.contact.addressLine2}
-=====================================================`;
-
-    const blob = new Blob([slipText], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${referenceId}-JupiterGauges-Enquiry.txt`;
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-
-  const handleWhatsApp = () => {
-    const msg = encodeURIComponent(
-      `Hello Jupiter Gauges,\nI have submitted an inquiry:\n` +
-      `Product: ${formData.productInterest}\n` +
-      `Specs: ${formData.specs || 'Standard Range'}\n` +
-      `Qty: ${formData.quantity}\n` +
-      `Company: ${formData.company}\n` +
-      `Name: ${formData.name} (${formData.phone})`
-    );
-    window.open(`https://wa.me/${COMPANY_INFO.contact.whatsappNumber.replace(/[^0-9]/g, '')}?text=${msg}`, '_blank');
   };
 
   return (
     <div>
-      {/* Header Banner */}
-      <section style={{
-        backgroundColor: '#1E2124',
-        padding: '64px 0 48px 0',
-        color: '#FFFFFF',
-        borderBottom: '1px solid #33383E'
-      }} className="industrial-grid-bg">
-        <div className="container">
-          <div style={{ maxWidth: '820px' }}>
-            <span className="section-tag">Direct Factory Contact</span>
-            <h1 style={{
-              fontSize: 'clamp(2.2rem, 4vw, 3.2rem)',
-              fontWeight: '800',
-              color: '#FFFFFF',
-              marginBottom: '16px'
-            }}>
-              Contact Works & <span style={{ color: 'var(--color-primary-yellow)' }}>Metrology Center</span>
-            </h1>
-            <p style={{ fontSize: '1.1rem', color: '#B0B8C0', lineHeight: 1.6 }}>
-              Reach out to our engineering sales team for technical queries, limit gauge quotations, drawing evaluations, or scheduled plant inspections.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Page Hero Banner */}
+      <InnerHeroBanner
+        heading="Let's Discuss Your Precision Measurement Requirements"
+        description="Connect with our team for product enquiries, technical assistance, custom gauging requirements and business collaborations."
+        bgImage="/images/od_master.jpg"
+        breadcrumbs={[
+          { label: 'Home', pageId: 'home' },
+          { label: 'Contact Us' }
+        ]}
+        setActivePage={setActivePage}
+      />
 
       {/* Main Contact Section */}
-      <section className="section">
+      <section className="section" style={{ backgroundColor: 'var(--color-white)' }}>
         <div className="container">
-          {/* Identity Notice */}
-          <div className="placeholder-notice" style={{ marginBottom: '40px' }}>
-            <div>
-              <strong>Jupiter Gauges Business Identity Notice:</strong> Company address, contact person, and phone numbers are clearly maintained as editable placeholders. You can directly edit these values in <code>src/data/company.js</code> to reflect updated manufacturing details.
-            </div>
-          </div>
-
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '40px'
+            gap: '48px'
           }}>
-            {/* Left Column: Contact Cards & Info */}
+            {/* Left Column: Contact Cards & Office Details */}
             <div>
-              <h2 style={{ fontSize: '1.8rem', marginBottom: '8px', color: 'var(--color-charcoal)' }}>
-                Plant & Corporate Office
+              <h2 style={{ fontSize: '1.45rem', marginBottom: '6px', color: 'var(--color-heading)' }}>
+                Manufacturing Facility & Sales Office
               </h2>
-              <p style={{ color: 'var(--color-grey-medium)', marginBottom: '32px', fontSize: '0.95rem' }}>
-                Our metrology inspection lab and customer support desk are operational Monday to Saturday.
+              <p style={{ color: 'var(--color-corporate-grey)', marginBottom: '28px', fontSize: '0.9rem' }}>
+                Our customer desk and metrology lab are operational Monday through Sunday (Thursday is a weekly holiday).
               </p>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '36px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '28px' }}>
                 {/* Address Card */}
                 <div style={{
-                  backgroundColor: 'var(--color-surface)',
-                  borderRadius: 'var(--radius-lg)',
-                  padding: '24px',
+                  backgroundColor: 'var(--color-white)',
+                  borderRadius: 'var(--radius-sm)',
+                  padding: '20px',
                   border: '1px solid var(--color-grey-border)',
-                  boxShadow: 'var(--shadow-sm)',
+                  boxShadow: 'var(--shadow-xs)',
                   display: 'flex',
-                  gap: '16px'
+                  gap: '14px'
                 }}>
                   <div style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '8px',
-                    backgroundColor: 'var(--color-yellow-light)',
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: 'var(--radius-sm)',
+                    backgroundColor: 'var(--color-grey-light)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#8A6E00',
+                    color: 'var(--color-charcoal)',
                     flexShrink: 0
                   }}>
-                    <MapPin size={22} />
+                    <MapPin size={18} />
                   </div>
                   <div>
-                    <h3 style={{ fontSize: '1.05rem', marginBottom: '4px', color: 'var(--color-charcoal)' }}>
-                      Manufacturing Facility & Works
+                    <h3 style={{ fontSize: '0.95rem', marginBottom: '3px', color: 'var(--color-heading)' }}>
+                      Facility & Works Address
                     </h3>
-                    <div style={{ fontSize: '0.875rem', color: 'var(--color-charcoal)' }}>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--color-body-text)' }}>
                       {COMPANY_INFO.contact.addressLine1}
                     </div>
-                    <div style={{ fontSize: '0.875rem', color: 'var(--color-grey-medium)' }}>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--color-corporate-grey)' }}>
                       {COMPANY_INFO.contact.addressLine2}
                     </div>
-                    <div style={{ fontSize: '0.875rem', color: 'var(--color-grey-medium)' }}>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--color-corporate-grey)' }}>
                       {COMPANY_INFO.contact.addressState}
                     </div>
                   </div>
                 </div>
 
-                {/* Phone Card */}
+                {/* Telephone Card */}
                 <div style={{
-                  backgroundColor: 'var(--color-surface)',
-                  borderRadius: 'var(--radius-lg)',
-                  padding: '24px',
+                  backgroundColor: 'var(--color-white)',
+                  borderRadius: 'var(--radius-sm)',
+                  padding: '20px',
                   border: '1px solid var(--color-grey-border)',
-                  boxShadow: 'var(--shadow-sm)',
+                  boxShadow: 'var(--shadow-xs)',
                   display: 'flex',
-                  gap: '16px'
+                  gap: '14px'
                 }}>
                   <div style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '8px',
-                    backgroundColor: 'var(--color-yellow-light)',
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: 'var(--radius-sm)',
+                    backgroundColor: 'var(--color-grey-light)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#8A6E00',
+                    color: 'var(--color-charcoal)',
                     flexShrink: 0
                   }}>
-                    <Phone size={22} />
+                    <Phone size={18} />
                   </div>
                   <div>
-                    <h3 style={{ fontSize: '1.05rem', marginBottom: '4px', color: 'var(--color-charcoal)' }}>
+                    <h3 style={{ fontSize: '0.95rem', marginBottom: '3px', color: 'var(--color-heading)' }}>
                       Telephone & WhatsApp Inquiries
                     </h3>
-                    <div style={{ fontSize: '0.875rem', fontWeight: '600', color: 'var(--color-charcoal)' }}>
-                      {COMPANY_INFO.contact.phonePrimary}
-                    </div>
-                    <div style={{ fontSize: '0.875rem', color: 'var(--color-grey-medium)' }}>
-                      {COMPANY_INFO.contact.phoneSecondary}
+                    <div style={{ fontSize: '0.85rem', fontWeight: '600', color: 'var(--color-body-text)' }}>
+                      Direct: {COMPANY_INFO.contact.phonePrimary}
                     </div>
                   </div>
                 </div>
 
                 {/* Email Card */}
                 <div style={{
-                  backgroundColor: 'var(--color-surface)',
-                  borderRadius: 'var(--radius-lg)',
-                  padding: '24px',
+                  backgroundColor: 'var(--color-white)',
+                  borderRadius: 'var(--radius-sm)',
+                  padding: '20px',
                   border: '1px solid var(--color-grey-border)',
-                  boxShadow: 'var(--shadow-sm)',
+                  boxShadow: 'var(--shadow-xs)',
                   display: 'flex',
-                  gap: '16px'
+                  gap: '14px'
                 }}>
                   <div style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '8px',
-                    backgroundColor: 'var(--color-yellow-light)',
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: 'var(--radius-sm)',
+                    backgroundColor: 'var(--color-grey-light)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#8A6E00',
+                    color: 'var(--color-charcoal)',
                     flexShrink: 0
                   }}>
-                    <Mail size={22} />
+                    <Mail size={18} />
                   </div>
                   <div>
-                    <h3 style={{ fontSize: '1.05rem', marginBottom: '4px', color: 'var(--color-charcoal)' }}>
-                      Electronic Mail Desks
+                    <h3 style={{ fontSize: '0.95rem', marginBottom: '3px', color: 'var(--color-heading)' }}>
+                      Mail Id
                     </h3>
-                    <div style={{ fontSize: '0.875rem', color: 'var(--color-charcoal)' }}>
-                      Sales & RFQs: {COMPANY_INFO.contact.emailSales}
-                    </div>
-                    <div style={{ fontSize: '0.875rem', color: 'var(--color-grey-medium)' }}>
-                      General Inquiries: {COMPANY_INFO.contact.emailInfo}
+                    <div style={{ fontSize: '0.85rem', color: 'var(--color-body-text)' }}>
+                      {COMPANY_INFO.contact.emailSales}
                     </div>
                   </div>
                 </div>
 
-                {/* Hours Card */}
+                {/* Operating Hours Card */}
                 <div style={{
-                  backgroundColor: 'var(--color-surface)',
-                  borderRadius: 'var(--radius-lg)',
-                  padding: '24px',
+                  backgroundColor: 'var(--color-white)',
+                  borderRadius: 'var(--radius-sm)',
+                  padding: '20px',
                   border: '1px solid var(--color-grey-border)',
-                  boxShadow: 'var(--shadow-sm)',
+                  boxShadow: 'var(--shadow-xs)',
                   display: 'flex',
-                  gap: '16px'
+                  gap: '14px'
                 }}>
                   <div style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '8px',
-                    backgroundColor: 'var(--color-yellow-light)',
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: 'var(--radius-sm)',
+                    backgroundColor: 'var(--color-grey-light)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#8A6E00',
+                    color: 'var(--color-charcoal)',
                     flexShrink: 0
                   }}>
-                    <Clock size={22} />
+                    <Clock size={18} />
                   </div>
                   <div>
-                    <h3 style={{ fontSize: '1.05rem', marginBottom: '4px', color: 'var(--color-charcoal)' }}>
+                    <h3 style={{ fontSize: '0.95rem', marginBottom: '3px', color: 'var(--color-heading)' }}>
                       Operating Timings
                     </h3>
-                    <div style={{ fontSize: '0.875rem', color: 'var(--color-charcoal)' }}>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--color-body-text)' }}>
                       {COMPANY_INFO.contact.workingHours}
-                    </div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--color-success)', marginTop: '2px' }}>
-                      ● {COMPANY_INFO.contact.labHours}
                     </div>
                   </div>
                 </div>
               </div>
-
-              {/* Direct WhatsApp Action Button */}
-              <button
-                onClick={handleWhatsApp}
-                className="btn btn-primary"
-                style={{ width: '100%', padding: '16px', fontSize: '1rem' }}
-              >
-                <MessageSquare size={18} /> Chat with Metrology Desk on WhatsApp
-              </button>
             </div>
 
-            {/* Right Column: Interactive Contact & Enquiry Form */}
+            {/* Right Column: Technical Enquiry Form */}
             <div>
               <div style={{
-                backgroundColor: 'var(--color-surface)',
-                borderRadius: 'var(--radius-xl)',
-                padding: '36px',
+                backgroundColor: 'var(--color-white)',
+                borderRadius: 'var(--radius-sm)',
+                padding: '32px',
                 border: '1px solid var(--color-grey-border)',
-                boxShadow: 'var(--shadow-md)'
+                boxShadow: 'var(--shadow-xs)'
               }}>
-                <h2 style={{ fontSize: '1.6rem', marginBottom: '8px', color: 'var(--color-charcoal)' }}>
-                  Submit Technical Enquiry
+                <h2 style={{ fontSize: '1.35rem', marginBottom: '6px', color: 'var(--color-heading)' }}>
+                  Submit Enquiry
                 </h2>
-                <p style={{ color: 'var(--color-grey-medium)', marginBottom: '28px', fontSize: '0.9rem' }}>
-                  Provide your component specifications or attach a 2D engineering drawing. Our metrology team will evaluate tolerances and respond with quotation details.
+                <p style={{ color: 'var(--color-corporate-grey)', marginBottom: '24px', fontSize: '0.875rem' }}>
+                  Share your specifications for a technical quotation.
                 </p>
 
                 {submitted ? (
-                  <div style={{ textAlign: 'center', padding: '32px 16px' }}>
+                  <div style={{ textAlign: 'center', padding: '48px 16px' }}>
                     <div style={{
-                      width: '64px',
-                      height: '64px',
+                      width: '56px',
+                      height: '56px',
                       borderRadius: '50%',
                       backgroundColor: 'var(--color-success-bg)',
                       color: 'var(--color-success)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      margin: '0 auto 20px auto'
+                      margin: '0 auto 16px auto'
                     }}>
-                      <CheckCircle2 size={36} />
+                      <CheckCircle2 size={32} />
                     </div>
-                    <h3 style={{ fontSize: '1.5rem', marginBottom: '8px' }}>
-                      Enquiry Transmitted Successfully
+                    <h3 style={{ fontSize: '1.35rem', marginBottom: '8px', color: 'var(--color-heading)' }}>
+                      Enquiry Submitted Successfully
                     </h3>
-                    <p style={{ fontSize: '0.9rem', color: 'var(--color-grey-medium)', marginBottom: '20px' }}>
-                      Transmittal Reference:{' '}
-                      <strong style={{ fontFamily: 'var(--font-mono)', color: 'var(--color-charcoal)' }}>
-                        {referenceId}
-                      </strong>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--color-corporate-grey)', maxWidth: '420px', margin: '0 auto', lineHeight: 1.6 }}>
+                      Thank you! Your enquiry has been sent successfully. Our team will review your specifications and contact you shortly.
                     </p>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                      <button onClick={handleDownloadEnquiry} className="btn btn-primary">
-                        <Download size={16} /> Download Copy of Inquiry (.txt)
-                      </button>
-                      <button onClick={handleWhatsApp} className="btn btn-secondary">
-                        <MessageSquare size={16} /> Forward via WhatsApp
-                      </button>
-                      <button 
-                        onClick={() => { setSubmitted(false); setErrors({}); }} 
-                        className="btn btn-dark btn-sm"
-                        style={{ marginTop: '10px' }}
-                      >
-                        Submit Another Inquiry
-                      </button>
-                    </div>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px' }}>
                       {/* Name */}
                       <div className="form-group">
                         <label className="form-label">Contact Person Name *</label>
@@ -391,7 +282,7 @@ Facility: ${COMPANY_INFO.contact.addressLine1}, ${COMPANY_INFO.contact.addressLi
                         <input
                           type="text"
                           className="form-input"
-                          placeholder="e.g. Patil Auto Components Ltd."
+                          placeholder="e.g. Precision Engineering Ltd."
                           value={formData.company}
                           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         />
@@ -400,7 +291,7 @@ Facility: ${COMPANY_INFO.contact.addressLine1}, ${COMPANY_INFO.contact.addressLi
 
                       {/* Email */}
                       <div className="form-group">
-                        <label className="form-label">Corporate Email Address *</label>
+                        <label className="form-label">Email Address *</label>
                         <input
                           type="email"
                           className="form-input"
@@ -414,13 +305,51 @@ Facility: ${COMPANY_INFO.contact.addressLine1}, ${COMPANY_INFO.contact.addressLi
                       {/* Phone */}
                       <div className="form-group">
                         <label className="form-label">Phone / Mobile *</label>
-                        <input
-                          type="tel"
-                          className="form-input"
-                          placeholder="e.g. +91 98XXX XXXXX"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        />
+                        <div style={{ display: 'flex', alignItems: 'stretch' }}>
+                          <span style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            padding: '0 12px',
+                            backgroundColor: 'var(--color-grey-light)',
+                            border: '1px solid var(--color-grey-border)',
+                            borderRight: 'none',
+                            borderRadius: 'var(--radius-sm) 0 0 var(--radius-sm)',
+                            fontSize: '0.875rem',
+                            fontWeight: '600',
+                            color: 'var(--color-charcoal)',
+                            userSelect: 'none'
+                          }}>
+                            +91
+                          </span>
+                          <input
+                            type="tel"
+                            inputMode="numeric"
+                            pattern="[0-9]*"
+                            maxLength={10}
+                            className="form-input"
+                            placeholder="98XXX XXXXX"
+                            style={{
+                              borderRadius: '0 var(--radius-sm) var(--radius-sm) 0',
+                              flex: 1
+                            }}
+                            value={formData.phone}
+                            onChange={(e) => {
+                              const numeric = e.target.value.replace(/\D/g, '').slice(0, 10);
+                              setFormData({ ...formData, phone: numeric });
+                            }}
+                            onKeyDown={(e) => {
+                              if (['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', 'Enter', 'Home', 'End'].includes(e.key)) {
+                                return;
+                              }
+                              if (e.ctrlKey || e.metaKey) {
+                                return;
+                              }
+                              if (!/^\d$/.test(e.key)) {
+                                e.preventDefault();
+                              }
+                            }}
+                          />
+                        </div>
                         {errors.phone && <div className="form-error-msg">{errors.phone}</div>}
                       </div>
 
@@ -439,73 +368,13 @@ Facility: ${COMPANY_INFO.contact.addressLine1}, ${COMPANY_INFO.contact.addressLi
                         </select>
                       </div>
 
-                      {/* Nominal Size / Specs */}
-                      <div className="form-group">
-                        <label className="form-label">Nominal Size / Tolerance Class</label>
-                        <input
-                          type="text"
-                          className="form-input"
-                          placeholder="e.g. Ø 20.000 H7 or M12x1.75 6H"
-                          value={formData.specs}
-                          onChange={(e) => setFormData({ ...formData, specs: e.target.value })}
-                        />
-                      </div>
-
-                      {/* Quantity */}
-                      <div className="form-group">
-                        <label className="form-label">Quantity (Units)</label>
-                        <input
-                          type="number"
-                          min="1"
-                          className="form-input"
-                          value={formData.quantity}
-                          onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
-                        />
-                      </div>
-
-                      {/* Drawing Upload */}
-                      <div className="form-group" style={{ gridColumn: '1 / -1' }}>
-                        <label className="form-label">Attach 2D Drawing / Tolerance Specification (Optional)</label>
-                        <div
-                          style={{
-                            border: '1.5px dashed var(--color-grey-border)',
-                            borderRadius: 'var(--radius-md)',
-                            padding: '12px 16px',
-                            backgroundColor: 'var(--color-bg)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '12px',
-                            cursor: 'pointer'
-                          }}
-                          onClick={() => {
-                            const fi = document.getElementById('contact-file-input');
-                            if (fi) fi.click();
-                          }}
-                        >
-                          <Upload size={18} color="var(--color-primary-yellow)" />
-                          <span style={{ fontSize: '0.85rem', color: formData.fileName ? 'var(--color-charcoal)' : 'var(--color-grey-medium)' }}>
-                            {formData.fileName || 'Click to select drawing file (PDF, DWG, DXF, PNG)'}
-                          </span>
-                          <input
-                            id="contact-file-input"
-                            type="file"
-                            style={{ display: 'none' }}
-                            onChange={(e) => {
-                              if (e.target.files && e.target.files[0]) {
-                                setFormData({ ...formData, fileName: e.target.files[0].name });
-                              }
-                            }}
-                          />
-                        </div>
-                      </div>
-
                       {/* Message */}
                       <div className="form-group" style={{ gridColumn: '1 / -1' }}>
                         <label className="form-label">Application Notes / Message</label>
                         <textarea
                           className="form-textarea"
                           rows={3}
-                          placeholder="Describe specific engineering requirements, wear allowances, surface finish limits, or project delivery schedule..."
+                          placeholder="Describe specific engineering tolerances, surface finish requirements, wear allowances, or delivery timeline..."
                           value={formData.message}
                           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         />
@@ -515,9 +384,9 @@ Facility: ${COMPANY_INFO.contact.addressLine1}, ${COMPANY_INFO.contact.addressLi
                     <button
                       type="submit"
                       className="btn btn-primary"
-                      style={{ width: '100%', marginTop: '8px', padding: '15px' }}
+                      style={{ width: '100%', marginTop: '6px', padding: '12px', fontWeight: '600' }}
                     >
-                      <Send size={18} /> Transmit Technical Enquiry
+                      <Send size={15} /> Submit Technical Enquiry
                     </button>
                   </form>
                 )}
@@ -525,60 +394,40 @@ Facility: ${COMPANY_INFO.contact.addressLine1}, ${COMPANY_INFO.contact.addressLi
             </div>
           </div>
 
-          {/* Interactive Google Maps Embed Placeholder Section */}
-          <div style={{ marginTop: '64px' }}>
-            <h3 style={{ fontSize: '1.4rem', marginBottom: '16px', color: 'var(--color-charcoal)' }}>
+          {/* Plant Location Information */}
+          <div style={{ marginTop: '48px', paddingTop: '36px', borderTop: '1px solid var(--color-grey-border)' }}>
+            <h3 style={{ fontSize: '1.25rem', marginBottom: '12px', color: 'var(--color-heading)' }}>
               Plant Geographic Location
             </h3>
             <div style={{
-              borderRadius: 'var(--radius-xl)',
-              overflow: 'hidden',
+              borderRadius: 'var(--radius-sm)',
               border: '1px solid var(--color-grey-border)',
-              backgroundColor: '#25282B',
-              height: '360px',
-              position: 'relative',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#FFFFFF'
+              backgroundColor: 'var(--color-grey-light)',
+              padding: '32px 24px',
+              textAlign: 'center'
             }}>
-              {/* Styled Metrology Map Backdrop */}
               <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundImage: 'radial-gradient(circle at 50% 50%, #32373D 0%, #1E2124 100%)',
-                opacity: 0.95
-              }} className="industrial-grid-bg" />
-
-              <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '24px' }}>
-                <div style={{
-                  width: '54px',
-                  height: '54px',
-                  borderRadius: '50%',
-                  backgroundColor: 'var(--color-primary-yellow)',
-                  color: 'var(--color-charcoal)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: '0 auto 16px auto',
-                  boxShadow: 'var(--shadow-yellow)'
-                }}>
-                  <MapPin size={28} />
-                </div>
-                <h4 style={{ fontSize: '1.25rem', color: '#FFFFFF', marginBottom: '8px' }}>
-                  Jupiter Gauges Manufacturing Works
-                </h4>
-                <p style={{ color: '#B0B8C0', fontSize: '0.9rem', maxWidth: '440px', margin: '0 auto 16px auto' }}>
-                  {COMPANY_INFO.contact.addressLine1}, {COMPANY_INFO.contact.addressLine2}, {COMPANY_INFO.contact.addressState}
-                </p>
-                <div style={{ display: 'inline-flex', gap: '8px' }}>
-                  <span className="badge badge-yellow">
-                    Latitude & Longitude Verified Upon Address Confirmation
-                  </span>
-                </div>
+                width: '44px',
+                height: '44px',
+                borderRadius: 'var(--radius-sm)',
+                backgroundColor: 'var(--color-white)',
+                border: '1px solid var(--color-grey-border)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 12px auto',
+                color: 'var(--color-charcoal)'
+              }}>
+                <MapPin size={22} />
+              </div>
+              <h4 style={{ fontSize: '1.05rem', color: 'var(--color-heading)', marginBottom: '6px' }}>
+                Jupiter Gauges Works & Metrology Center
+              </h4>
+              <p style={{ color: 'var(--color-corporate-grey)', fontSize: '0.875rem', maxWidth: '440px', margin: '0 auto 12px auto' }}>
+                {COMPANY_INFO.contact.addressLine1}, {COMPANY_INFO.contact.addressLine2}, {COMPANY_INFO.contact.addressState}
+              </p>
+              <div style={{ fontSize: '0.75rem', color: 'var(--color-corporate-grey)' }}>
+                Industrial manufacturing and metrology inspection facility. Factory visits by appointment.
               </div>
             </div>
           </div>

@@ -1,26 +1,23 @@
 export const COMPANY_INFO = {
   name: 'Jupiter Gauges',
   tagline: 'Precision in Every Measurement',
-  subheading: 'Reliable Industrial Gauging Solutions for Quality-Driven Manufacturing',
-  shortAbout: 'Jupiter Gauges is a precision engineering enterprise specializing in the design, manufacture, and supply of industrial limit gauges, thread gauges, measuring pins, and metrology standards. We empower manufacturing sectors with reliable gauging solutions engineered for sub-micron accuracy and long-term dimensional stability.',
-  
-  // Clearly labelled editable placeholders for Jupiter business identity
+  subheading: 'Reliable Industrial Gauging Solutions for Quality Driven Manufacturing',
+  shortAbout: 'Established in June 2020, Jupiter Gauges is committed to delivering high quality precision gauges, industrial gauges, and reliable measuring instruments. We focus on providing quality products, timely deliveries, competitive pricing, and dependable customer service to meet diverse industrial requirements.',
+  aboutDetail: 'As a growing name in the gauges manufacturing industry, we aim to build strong customer relationships by offering reliable industrial measuring solutions, consistent product quality, and professional services. Our commitment to precision, accuracy, and customer satisfaction drives us to deliver products that meet industry standards and customer expectations.',
+  aboutVision: 'At Jupiter Gauges, we strive to be a trusted gauges manufacturer and supplier, providing dependable precision measuring solutions for various industrial applications. We believe in building long-term business relationships through quality, reliability, competitive pricing, and continuous improvement.',
+
+  // Editable business contact information for Jupiter Gauges
   contact: {
-    ownerName: '[Jupiter Owner / Managing Director Name]',
-    ownerTitle: 'Managing Director / Quality Head',
-    phonePrimary: '[Jupiter Phone Number: +91 98XXX XXXXX]',
-    phoneSecondary: '[Jupiter Secondary Phone: +91 98XXX XXXXX]',
-    phoneRaw: '+919800000000', // for tel: and whatsapp:
-    emailSales: '[Jupiter Sales Email: sales@jupitergauges.com]',
-    emailInfo: '[Jupiter General Email: info@jupitergauges.com]',
-    emailRaw: 'sales@jupitergauges.com',
-    addressLine1: '[Jupiter Business Address: Plot No. XX, Sector XX]',
-    addressLine2: '[Industrial Area / MIDC, Pune - 4110XX]',
+    ownerName: 'Mr. Sandeep Kale',
+    ownerTitle: 'Managing Director',
+    phonePrimary: '+91 98811 13400',
+    emailSales: 'jupitergauges@gmail.com',
+    addressLine1: ' Sr. No. 27, Behind Hotel Relax',
+    addressLine2: 'Kharadi, Pune - 411014',
     addressState: 'Maharashtra, India',
-    workingHours: 'Monday – Saturday: 8:30 AM – 6:30 PM (IST)',
-    labHours: 'Metrology Inspection Lab: Temperature stabilized 24/7 at 20°C',
-    whatsappNumber: '+919800000000',
-    whatsappMessageDefault: 'Hello Jupiter Gauges, I would like to request a quotation for industrial gauges.'
+    workingHours: 'Monday – Sunday: 8:00 AM – 8:00 PM (IST) (Thursday Holiday)',
+    whatsappNumber: '+919881113400',
+    whatsappMessageDefault: 'Hello Jupiter Gauges, I would like to enquire about precision limit gauges.'
   },
 
   // Key Engineering Capabilities & Metrology Highlights
@@ -120,53 +117,157 @@ export const COMPANY_INFO = {
     }
   ],
 
-  // Industries Served
+  // Industries Served & Sector Expertise
   industries: [
     {
-      id: 'automotive',
-      name: 'Automotive & Commercial Vehicles',
-      desc: 'Connecting rods, engine blocks, transmission gears, crankshaft journals, brake discs, and electric vehicle drivetrain components.',
-      application: 'Bore sizing, shaft tolerances, tapped hole verification.'
-    },
-    {
       id: 'aerospace',
-      name: 'Aerospace & Defense',
-      desc: 'Precision hydraulic actuator valves, turbine engine components, aircraft structural fasteners, and ordnance hardware.',
-      application: 'Class XX thread rings, high-precision plain plug gauges.'
+      name: 'Aerospace',
+      desc: 'Critical inspection standards for turbine blades, avionics enclosures, precision hydraulic actuator valves, fuel injection assemblies, and aircraft structural fasteners.',
+      application: 'Class XX thread rings, high-precision plain plug gauges, master setting rings, sub-micron pin sets.'
     },
     {
-      id: 'precision-engineering',
-      name: 'Precision Toolrooms & Die Making',
-      desc: 'Press tool dies, stamping punch clearances, mold cavities, and precision fixture alignment.',
-      application: 'Measuring pin sets, slip gauge blocks, master setting rings.'
+      id: 'automobile',
+      name: 'Automobile',
+      desc: 'High-volume production line gauging for engine blocks, cylinder bores, connecting rods, transmission gear shafts, brake discs, and electric vehicle powertrain units.',
+      application: 'Reversible Go/No-Go plug gauges, snap gauges, spline pitch diameter standards, taper bore gauges.'
     },
     {
-      id: 'heavy-engineering',
-      name: 'Heavy Engineering & Pumps',
-      desc: 'Centrifugal pump impeller shafts, bearing housings, gearbox casings, and oilfield high-pressure piping flanges.',
-      application: 'Large diameter snap gauges, master setting discs, NPT/BSP thread gauges.'
+      id: 'commercial',
+      name: 'Commercial',
+      desc: 'Gauging solutions for heavy commercial vehicles, tractors, agricultural machinery, construction earthmovers, material handling systems, and commercial equipment.',
+      application: 'Large-diameter snap gauges, multi-step bore gauges, heavy-duty thread plug & ring standards.'
     },
     {
-      id: 'medical-devices',
-      name: 'Medical Devices & Implants',
-      desc: 'Orthopedic surgical screws, endoscopic instrument connectors, fluid metering nozzles, and titanium fasteners.',
-      application: 'Micro pin gauges, precision thread plug gauges.'
+      id: 'defence',
+      name: 'Defence',
+      desc: 'Ultra-tight tolerance inspection for armored fighting vehicle transmissions, ordnance hardware, weapon mount interfaces, naval guidance systems, and specialized aerospace defense components.',
+      application: 'Custom limit gauges to defense blueprints, master setting discs, high-wear tungsten carbide standards.'
     },
     {
-      id: 'fasteners',
-      name: 'Fastener & Turned Component Industry',
-      desc: 'High-speed automated fastener manufacturing, CNC turned brass and steel components, hydraulic nipples.',
-      application: 'Fast Go/No-Go thread inspection and snap gauges.'
+      id: 'instrumentation',
+      name: 'Instrumentation',
+      desc: 'High-sensitivity metrology for process control sensors, pressure regulators, micro-metering valves, analytical instrumentation, and fluid measurement systems.',
+      application: 'Micro pin gauge sets (0.10 mm to 20.00 mm), miniature thread gauges, Ra < 0.05 µm master reference rings.'
+    },
+    {
+      id: 'marine',
+      name: 'Marine',
+      desc: 'Heavy-duty dimensional standards for marine propulsion shafts, diesel engine cylinder liners, shipboard reduction gearboxes, steering actuators, and high-pressure offshore valve manifolds.',
+      application: 'Master setting discs, large taper gauges, NPT/BSP thread inspection rings, depth limit standards.'
     }
   ],
 
-  // Verified Client Placeholders (Note: strictly keeping Swastik details away from Jupiter)
-  clientPlaceholders: [
-    { id: 1, name: '[Verified Industrial Client 01]', segment: 'Automotive OEM Supplier' },
-    { id: 2, name: '[Verified Industrial Client 02]', segment: 'Aerospace Component Manufacturer' },
-    { id: 3, name: '[Verified Industrial Client 03]', segment: 'Precision Toolroom & Dies' },
-    { id: 4, name: '[Verified Industrial Client 04]', segment: 'Hydraulics & Pneumatics' },
-    { id: 5, name: '[Verified Industrial Client 05]', segment: 'Transmission & Gear Plant' },
-    { id: 6, name: '[Verified Industrial Client 06]', segment: 'Engine & Crankshaft Engineering' }
-  ]
+  // Industrial Sectors & Client Roster
+  clients: [
+    {
+      id: 'kalyani',
+      name: 'Kalyani (Kalyani Group)',
+      shortName: 'Kalyani',
+      company: 'Kalyani Group',
+      logo: '/images/clients/kalyani.png',
+      code: 'KALYANI',
+      segment: 'Automotive Forging & Heavy Engineering Conglomerate',
+      industry: 'Automotive & Defense Engineering',
+      description: 'Global engineering conglomerate leading in precision forgings, automotive chassis components, and defense hardware.',
+      supplyScope: 'Plain Plug Gauges, Master Setting Rings, Thread Standards',
+      location: 'Pune, Maharashtra'
+    },
+    {
+      id: 'trinity',
+      name: 'Trinity Engineers Pvt. Ltd.',
+      shortName: 'Trinity Engineers',
+      company: 'Trinity Engineers Pvt. Ltd.',
+      tagline: 'The Master Blacksmiths !',
+      logo: '/images/clients/trinity-engineers.png',
+      code: 'TRINITY',
+      segment: 'Precision Closed-Die Forgings & Machined Assemblies',
+      industry: 'Automotive & Industrial Drop Forgings',
+      description: 'Premier drop forgings manufacturer producing safety-critical machined components for automotive commercial vehicles and off-highway equipment.',
+      supplyScope: 'Plain Snap Gauges, Width & Caliper Gauges, Setting Discs',
+      location: 'Pune, Maharashtra'
+    },
+    {
+      id: 'lg',
+      name: 'LG',
+      shortName: 'LG',
+      company: 'LG Electronics',
+      logo: '/images/clients/lg.png',
+      code: 'LG',
+      segment: 'Consumer Electronics & Precision Appliance Manufacturing',
+      industry: 'Consumer Electronics & Durables',
+      description: 'Multinational conglomerate manufacturing high-precision appliance compressors, inverter motors, and electronic assemblies requiring sub-micron dimensional adherence.',
+      supplyScope: 'Sub-Micron Measuring Pins, Multi-Step Limit Plugs, Bore Standards',
+      location: 'Pune & Greater Noida'
+    },
+    {
+      id: 'rsg',
+      name: 'RSG (Renk Standard Gearboxes)',
+      shortName: 'RSG (Renk)',
+      company: 'Renk Standard Gearboxes',
+      logo: '/images/clients/rsg-renk.png',
+      code: 'RSG-RENK',
+      segment: 'Industrial Gearboxes & High-Torque Transmission Systems',
+      industry: 'Heavy Transmissions & Machinery',
+      description: 'Specialists in high-speed, heavy-duty industrial transmissions, couplings, and standard gearboxes for demanding energy and manufacturing operations.',
+      supplyScope: 'Spline & Gear Gauges, Master Setting Rings, Master Discs',
+      location: 'India'
+    },
+    {
+      id: 'hero',
+      name: 'Hero (Hero MotoCorp)',
+      shortName: 'Hero MotoCorp',
+      company: 'Hero MotoCorp Ltd.',
+      logo: '/images/clients/hero.png',
+      code: 'HERO',
+      segment: 'Two-Wheeler Automotive OEM & Engine Manufacturing',
+      industry: 'Automotive Two-Wheeler OEM',
+      description: 'The world\'s largest manufacturer of two-wheelers, with ultra-high-volume powertrain assembly lines requiring rapid, reliable Go/No-Go inspection tools.',
+      supplyScope: 'Class XX Thread Ring Gauges, Cylindrical Plug Gauges, Snap Gauges',
+      location: 'Gurugram & Dharuhera'
+    },
+    {
+      id: 'seco',
+      name: 'Seco (Seco Tools)',
+      shortName: 'Seco Tools',
+      company: 'Seco Tools India',
+      logo: '/images/clients/seco.png',
+      code: 'SECO',
+      segment: 'Precision Metal Cutting Solutions & Tooling Systems',
+      industry: 'High-Precision Cutting Tool Systems',
+      description: 'Global solution provider for metal cutting, indexable milling, turning, and high-precision toolholding systems with tight micron tolerances.',
+      supplyScope: 'Taper Setting Gauges, Master Length Standards, Thread Standards',
+      location: 'Pune, Maharashtra'
+    },
+    {
+      id: 'jagadamba',
+      name: 'Jagadamba Auto-components Ltd.',
+      shortName: 'Jagadamba Auto',
+      company: 'Jagadamba Auto-components Ltd.',
+      logo: '/images/clients/jagadamba.png',
+      code: 'JAGADAMBA',
+      segment: 'Automotive Transmission Gears & Precision Forgings',
+      industry: 'Automotive Powertrain & Transmissions',
+      description: 'Leading Tier-1 manufacturer specializing in machined automotive crown wheels, pinions, differential gears, and transmission shafts.',
+      supplyScope: 'Pitch Diameter Gauges, Double-Ended Limit Plugs, Caliper Gauges',
+      location: 'Pune, Maharashtra'
+    },
+    {
+      id: 'ashok-iron',
+      name: 'Ashok Iron Group',
+      shortName: 'Ashok Iron',
+      company: 'Ashok Iron Group',
+      logo: '/images/clients/ashok-iron.png',
+      code: 'ASHOK IRON',
+      segment: 'Precision Ferrous Machined Castings & Engine Blocks',
+      industry: 'Ferrous Foundry & Engine Castings',
+      description: 'Tier-1 foundry and machining group engineering complex automotive cylinder blocks, cylinder heads, transmission housings, and ductile iron castings.',
+      supplyScope: 'Large Diameter Bore Plugs, Master Setting Discs, Deep Hole Pin Gauges',
+      location: 'Belagavi, Karnataka'
+    }
+  ],
+
+  // Backward compatibility alias
+  get clientPlaceholders() {
+    return this.clients;
+  }
 };

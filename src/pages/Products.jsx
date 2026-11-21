@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Search, 
-  Filter, 
-  ArrowRight, 
   FileText, 
-  Check, 
-  SlidersHorizontal,
-  Compass,
-  Layers,
-  Sparkles
+  SlidersHorizontal
 } from 'lucide-react';
-import { PRODUCTS, PRODUCT_CATEGORIES, TECHNICAL_STANDARDS } from '../data/products';
+import { PRODUCTS, PRODUCT_CATEGORIES } from '../data/products';
+import InnerHeroBanner from '../components/InnerHeroBanner';
 
-export default function Products({ onOpenQuote, onSelectProduct, initialCategory = 'all' }) {
+export default function Products({ onOpenQuote, initialCategory = 'all', setActivePage }) {
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -30,104 +25,91 @@ export default function Products({ onOpenQuote, onSelectProduct, initialCategory
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
     const matchesSearch = 
       item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.standard.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.material.toLowerCase().includes(searchQuery.toLowerCase());
+      item.shortDesc.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
   return (
     <div>
-      {/* Header Banner */}
-      <section style={{
-        backgroundColor: '#1E2124',
-        padding: '64px 0 48px 0',
-        color: '#FFFFFF',
-        borderBottom: '1px solid #33383E'
-      }} className="industrial-grid-bg">
-        <div className="container">
-          <div style={{ maxWidth: '820px' }}>
-            <span className="section-tag">Precision Gauges Catalogue</span>
-            <h1 style={{
-              fontSize: 'clamp(2.2rem, 4vw, 3.2rem)',
-              fontWeight: '800',
-              color: '#FFFFFF',
-              marginBottom: '16px'
-            }}>
-              Industrial Limit Gauges & <span style={{ color: 'var(--color-primary-yellow)' }}>Metrology Standards</span>
-            </h1>
-            <p style={{ fontSize: '1.1rem', color: '#B0B8C0', lineHeight: 1.6 }}>
-              Manufactured with hardened tool steel, cryogenic sub-zero stabilization, and super-finished lapping. Available in standard catalog ranges and custom dimensions to customer engineering drawings.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Page Hero Banner */}
+      <InnerHeroBanner
+        heading="High-Precision Gauges & Measuring Instruments"
+        description="Explore our comprehensive range of precision-engineered gauges and measuring solutions designed to meet demanding industrial quality standards."
+        bgImage="/images/thread_gauges.jpg"
+        breadcrumbs={[
+          { label: 'Home', pageId: 'home' },
+          { label: 'Products' }
+        ]}
+        ctaText="Enquire Now"
+        onCtaClick={() => onOpenQuote()}
+        setActivePage={setActivePage}
+      />
 
       {/* Main Catalogue Area */}
-      <section className="section">
+      <section className="section" style={{ backgroundColor: 'var(--color-white)' }}>
         <div className="container">
-          {/* Controls Bar: Category Pills + Search */}
+          {/* Controls Bar: Category Filter Tabs + Search */}
           <div style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '20px',
-            marginBottom: '40px'
+            gap: '16px',
+            marginBottom: '36px'
           }}>
-            {/* Search Input */}
+            {/* Search Input Bar */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              backgroundColor: 'var(--color-surface)',
-              border: '1.5px solid var(--color-grey-border)',
-              borderRadius: 'var(--radius-md)',
-              padding: '6px 16px',
-              maxWidth: '480px'
+              backgroundColor: 'var(--color-white)',
+              border: '1px solid var(--color-grey-border)',
+              borderRadius: 'var(--radius-sm)',
+              padding: '6px 14px',
+              maxWidth: '440px'
             }}>
-              <Search size={18} color="var(--color-grey-medium)" style={{ marginRight: '10px' }} />
+              <Search size={16} color="var(--color-corporate-grey)" style={{ marginRight: '10px' }} />
               <input
                 type="text"
-                placeholder="Search by gauge name, standard (IS, DIN, ISO), or material..."
+                placeholder="Search by gauge type or name..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 style={{
                   border: 'none',
                   outline: 'none',
                   width: '100%',
-                  fontSize: '0.95rem',
-                  fontFamily: 'var(--font-body)',
-                  backgroundColor: 'transparent'
+                  fontSize: '0.875rem',
+                  fontFamily: 'var(--font-primary)',
+                  backgroundColor: 'transparent',
+                  color: 'var(--color-charcoal)'
                 }}
               />
               {searchQuery && (
                 <button 
                   onClick={() => setSearchQuery('')}
-                  style={{ fontSize: '0.8rem', color: 'var(--color-grey-medium)', padding: '4px' }}
+                  style={{ fontSize: '0.75rem', color: 'var(--color-corporate-grey)', padding: '2px 6px' }}
                 >
                   Clear
                 </button>
               )}
             </div>
 
-            {/* Category Filter Pills */}
+            {/* Category Filter Tabs */}
             <div style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '8px'
+              gap: '6px'
             }}>
               {PRODUCT_CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
                   style={{
-                    padding: '8px 18px',
-                    borderRadius: 'var(--radius-full)',
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '0.875rem',
+                    padding: '7px 14px',
+                    borderRadius: 'var(--radius-sm)',
+                    fontSize: '0.8125rem',
                     fontWeight: '600',
-                    border: '1.5px solid',
-                    borderColor: selectedCategory === cat.id ? 'var(--color-primary-yellow)' : 'var(--color-grey-border)',
-                    backgroundColor: selectedCategory === cat.id ? 'var(--color-primary-yellow)' : 'var(--color-surface)',
-                    color: selectedCategory === cat.id ? 'var(--color-charcoal)' : 'var(--color-grey-medium)',
+                    border: '1px solid',
+                    borderColor: selectedCategory === cat.id ? 'var(--color-charcoal)' : 'var(--color-grey-border)',
+                    backgroundColor: selectedCategory === cat.id ? 'var(--color-charcoal)' : 'var(--color-white)',
+                    color: selectedCategory === cat.id ? 'var(--color-white)' : 'var(--color-body-text)',
                     transition: 'all var(--transition-fast)'
                   }}
                 >
@@ -141,19 +123,21 @@ export default function Products({ onOpenQuote, onSelectProduct, initialCategory
           {filteredProducts.length === 0 ? (
             <div style={{
               textAlign: 'center',
-              padding: '60px 20px',
-              backgroundColor: 'var(--color-surface)',
-              borderRadius: 'var(--radius-lg)',
-              border: '1px dashed var(--color-grey-border)'
+              padding: '48px 20px',
+              backgroundColor: 'var(--color-grey-light)',
+              borderRadius: 'var(--radius-sm)',
+              border: '1px solid var(--color-grey-border)'
             }}>
-              <SlidersHorizontal size={40} color="var(--color-grey-medium)" style={{ margin: '0 auto 16px auto' }} />
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '8px' }}>No Gauges Match Your Filter</h3>
-              <p style={{ color: 'var(--color-grey-medium)', marginBottom: '20px' }}>
-                Try searching with a different keyword or reset category selection.
+              <SlidersHorizontal size={36} color="var(--color-corporate-grey)" style={{ margin: '0 auto 12px auto' }} />
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '6px', color: 'var(--color-heading)' }}>
+                No Gauges Found
+              </h3>
+              <p style={{ color: 'var(--color-corporate-grey)', fontSize: '0.875rem', marginBottom: '16px' }}>
+                Try searching with a different term or clear category filters.
               </p>
               <button 
                 onClick={() => { setSelectedCategory('all'); setSearchQuery(''); }}
-                className="btn btn-secondary"
+                className="btn btn-secondary btn-sm"
               >
                 Reset Filters
               </button>
@@ -161,64 +145,20 @@ export default function Products({ onOpenQuote, onSelectProduct, initialCategory
           ) : (
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '28px',
-              marginBottom: '56px'
+              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+              gap: '24px',
+              marginBottom: '48px'
             }}>
               {filteredProducts.map((product) => (
                 <div key={product.id} className="product-card">
                   <div className="product-img-wrap">
                     <img src={product.image} alt={product.name} className="product-img" loading="lazy" />
-                    <span className="badge badge-yellow" style={{
-                      position: 'absolute',
-                      top: '12px',
-                      left: '12px',
-                      backgroundColor: 'rgba(255, 248, 225, 0.95)'
-                    }}>
-                      {product.standard}
-                    </span>
-                    <span className="badge badge-charcoal" style={{
-                      position: 'absolute',
-                      bottom: '12px',
-                      right: '12px',
-                      backgroundColor: 'rgba(37, 40, 43, 0.9)'
-                    }}>
-                      <span style={{ color: 'var(--color-accent-yellow)' }}>{product.hardness.split('(')[0]}</span>
-                    </span>
                   </div>
 
                   <div className="product-card-body">
                     <h3 className="product-card-title">{product.name}</h3>
                     <p className="product-card-desc">{product.shortDesc}</p>
-
-                    <div className="product-specs-preview">
-                      <div className="spec-preview-row">
-                        <span className="spec-preview-label">Material:</span>
-                        <span className="spec-preview-val">{product.material.split('/')[0]}</span>
-                      </div>
-                      <div className="spec-preview-row">
-                        <span className="spec-preview-label">Tolerance Class:</span>
-                        <span className="spec-preview-val">{product.toleranceGrade.split(',')[0]}</span>
-                      </div>
-                      <div className="spec-preview-row">
-                        <span className="spec-preview-label">Size Range:</span>
-                        <span className="spec-preview-val">{product.sizeRange}</span>
-                      </div>
-                      <div className="spec-preview-row">
-                        <span className="spec-preview-label">Sub-Zero Treated:</span>
-                        <span className="spec-preview-val" style={{ color: 'var(--color-success)' }}>
-                          -80°C Stabilized
-                        </span>
-                      </div>
-                    </div>
-
                     <div className="product-card-actions">
-                      <button
-                        onClick={() => onSelectProduct(product)}
-                        className="btn btn-secondary btn-sm"
-                      >
-                        Technical Specs
-                      </button>
                       <button
                         onClick={() => onOpenQuote(product.name)}
                         className="btn btn-primary btn-sm"
@@ -232,36 +172,35 @@ export default function Products({ onOpenQuote, onSelectProduct, initialCategory
             </div>
           )}
 
-          {/* Custom Non-Standard Gauging Box */}
+          {/* Custom Tooling Callout Box */}
           <div style={{
-            backgroundColor: '#1E2124',
-            borderRadius: 'var(--radius-xl)',
-            padding: '40px',
-            color: '#FFFFFF',
-            border: '1px solid #3A3F45',
+            backgroundColor: 'var(--color-grey-light)',
+            borderRadius: 'var(--radius-md)',
+            border: '1px solid var(--color-grey-border)',
+            padding: '32px',
             display: 'flex',
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: '24px'
-          }} className="industrial-grid-bg">
+          }}>
             <div style={{ maxWidth: '640px' }}>
-              <span className="badge badge-yellow" style={{ marginBottom: '12px' }}>
-                Engineering Customization
+              <span className="badge badge-neutral" style={{ marginBottom: '8px' }}>
+                Custom Engineering
               </span>
-              <h3 style={{ fontSize: '1.6rem', color: '#FFFFFF', marginBottom: '8px' }}>
-                Require Custom Limits, Stepped Gauges, or Non-Standard Pitches?
+              <h3 style={{ fontSize: '1.35rem', color: 'var(--color-heading)', marginBottom: '6px' }}>
+                Require Non-Standard Limit Gauges or Special Thread Profiles?
               </h3>
-              <p style={{ color: '#B0B8C0', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                Jupiter Gauges manufactures custom limit gauges tailored to your proprietary component drawings, keyway gauges, splines, and special thread profiles (Trapezoidal, ACME, Buttress, and multi-start).
+              <p style={{ color: 'var(--color-corporate-grey)', fontSize: '0.875rem', lineHeight: 1.6, margin: 0 }}>
+                Jupiter Gauges manufactures custom limit gauges engineered to customer drawings, stepped plug gauges, extra-length pins, and special thread forms (Trapezoidal, ACME, Buttress, and multi-start).
               </p>
             </div>
             <button
               onClick={() => onOpenQuote('Custom Gauge / Non-Standard Tooling')}
-              className="btn btn-primary btn-lg"
-              style={{ fontWeight: '700' }}
+              className="btn btn-primary"
+              style={{ fontWeight: '600' }}
             >
-              <FileText size={18} /> Request Custom Gauge Quotation
+              <FileText size={16} /> Enquire Custom Gauge
             </button>
           </div>
         </div>
