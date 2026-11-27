@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Jupiter Gauges</title>
+  <script>
+    // GitHub Pages Single Page Apps redirect script
+    // MIT License - https://github.com/rafgraph/spa-github-pages
+    // pathSegmentsToKeep is 1 for project pages (e.g. https://username.github.io/jupiter_gauges)
+    // and 0 for custom domains (e.g. https://example.com)
+    var pathSegmentsToKeep = 1;
+
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.host + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+      l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+      (l.search ? '&' : '') + l.search.slice(1).replace(/&/g, '~and~') +
+      l.hash
+    );
+  </script>
+</head>
+<body>
+</body>
+</html>

@@ -11,31 +11,57 @@ import Clients from './pages/Clients';
 import Contact from './pages/Contact';
 import Quote from './pages/Quote';
 
+const VALID_PAGES = ['home', 'about', 'products', 'clients', 'contact', 'quote'];
+
+function getPageFromUrl() {
+  // 1. Check hash first (#about, #/about)
+  const hash = window.location.hash.replace(/^#[/]?/, '').toLowerCase();
+  if (VALID_PAGES.includes(hash)) {
+    return hash;
+  }
+
+  // 2. Check query parameter (?p=/about or ?p=about)
+  const searchParams = new URLSearchParams(window.location.search);
+  const pParam = searchParams.get('p');
+  if (pParam) {
+    const cleanP = pParam.replace(/^[/]?/, '').toLowerCase();
+    if (VALID_PAGES.includes(cleanP)) {
+      return cleanP;
+    }
+  }
+
+  // 3. Check pathname (/jupiter_gauges/about or /about)
+  const pathSegments = window.location.pathname.split('/').filter(Boolean);
+  const lastSegment = (pathSegments[pathSegments.length - 1] || '').toLowerCase();
+  if (VALID_PAGES.includes(lastSegment)) {
+    return lastSegment;
+  }
+
+  return 'home';
+}
+
 export default function App() {
-  const [activePage, setActivePage] = useState('home');
+  const [activePage, setActivePage] = useState(getPageFromUrl);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [quoteProduct, setQuoteProduct] = useState('');
 
-  // Sync with browser URL hash
+  // Sync with browser URL changes (hash, popstate, decoder replaceState)
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (['home', 'about', 'products', 'clients', 'contact', 'quote'].includes(hash)) {
-        setActivePage(hash);
-      }
+    const syncRoute = () => {
+      setActivePage(getPageFromUrl());
     };
 
-    if (window.location.hash) {
-      handleHashChange();
-    }
-
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('hashchange', syncRoute);
+    window.addEventListener('popstate', syncRoute);
+    return () => {
+      window.removeEventListener('hashchange', syncRoute);
+      window.removeEventListener('popstate', syncRoute);
+    };
   }, []);
 
   const navigateToPage = (page) => {
     setActivePage(page);
-    window.location.hash = page;
+    window.location.hash = page === 'home' ? '' : page;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -55,7 +81,7 @@ export default function App() {
 
       {/* Main Page Content */}
       <main style={{ flex: 1 }}>
-        {activePage === '/' && (
+        {(activePage === 'home' || activePage === '/') && (
           <Home
             setActivePage={navigateToPage}
             onOpenQuote={handleOpenQuote}
