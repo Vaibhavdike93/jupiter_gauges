@@ -47,68 +47,68 @@ export default function App() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Navigation Bar */}
-      <Navbar 
-        activePage={activePage} 
-        setActivePage={navigateToPage} 
-        onOpenQuote={handleOpenQuote} 
+      <Navbar
+        activePage={activePage}
+        setActivePage={navigateToPage}
+        onOpenQuote={handleOpenQuote}
       />
 
       {/* Main Page Content */}
       <main style={{ flex: 1 }}>
-        {activePage === 'home' && (
-          <Home 
-            setActivePage={navigateToPage} 
-            onOpenQuote={handleOpenQuote} 
+        {activePage === '/' && (
+          <Home
+            setActivePage={navigateToPage}
+            onOpenQuote={handleOpenQuote}
           />
         )}
 
         {activePage === 'about' && (
-          <About 
-            setActivePage={navigateToPage} 
-            onOpenQuote={handleOpenQuote} 
+          <About
+            setActivePage={navigateToPage}
+            onOpenQuote={handleOpenQuote}
           />
         )}
 
         {activePage === 'products' && (
-          <Products 
+          <Products
             setActivePage={navigateToPage}
-            onOpenQuote={handleOpenQuote} 
+            onOpenQuote={handleOpenQuote}
           />
         )}
 
         {activePage === 'clients' && (
-          <Clients 
-            setActivePage={navigateToPage} 
-            onOpenQuote={handleOpenQuote} 
+          <Clients
+            setActivePage={navigateToPage}
+            onOpenQuote={handleOpenQuote}
           />
         )}
 
         {activePage === 'contact' && (
-          <Contact 
+          <Contact
             setActivePage={navigateToPage}
-            onOpenQuote={handleOpenQuote} 
+            onOpenQuote={handleOpenQuote}
             preselectedProduct={quoteProduct}
           />
         )}
 
         {activePage === 'quote' && (
-          <Quote 
+          <Quote
             setActivePage={navigateToPage}
-            onOpenQuote={handleOpenQuote} 
+            onOpenQuote={handleOpenQuote}
           />
         )}
       </main>
 
       {/* Footer */}
-      <Footer 
-        setActivePage={navigateToPage} 
-        onOpenQuote={handleOpenQuote} 
+      <Footer
+        setActivePage={navigateToPage}
+        onOpenQuote={handleOpenQuote}
       />
 
       {/* Universal Quote / RFQ Modal */}
-      <QuoteModal 
-        isOpen={isQuoteModalOpen} 
-        onClose={() => setIsQuoteModalOpen(false)} 
+      <QuoteModal
+        isOpen={isQuoteModalOpen}
+        onClose={() => setIsQuoteModalOpen(false)}
         preselectedProduct={quoteProduct}
       />
 
